@@ -1,0 +1,36 @@
+.Input {
+  width: fit-content;
+  margin: auto;
+}
+
+.Input div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  cursor: pointer;
+  margin: 10px;
+  width: 280px;
+  height: 50px;
+  border-radius: 15px;
+}
+
+.Input div:hover {
+  background-color: rgb(34, 34, 34);
+}
+
+.Input h1 {
+  font-size: 1.8rem;
+}
+
+.Required {
+  border: 2px solid darkgreen;
+}
+
+.Optional {
+  border: 2px solid darkblue;
+}
+
+.Exclude {
+  border: 2px solid darkred;
+}

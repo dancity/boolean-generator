@@ -1,0 +1,56 @@
+.cardbox {
+  margin: auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  min-height: 250px;
+  overflow: auto;
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  margin: 10px;
+  width: 250px;
+  height: 250px;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  border: 4px solid;
+}
+
+.keywords {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+.keywords p {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+input[type="text"] {
+  width: 90%;
+  text-align: center;
+  padding: 3px 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+input[type="text"]:focus {
+  border: 1px solid black;
+}
