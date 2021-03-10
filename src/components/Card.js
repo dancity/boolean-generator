@@ -1,4 +1,5 @@
 import React from "react";
+import trash from "../img/trash.svg";
 
 function Card(props) {
   //Changes border color based on the type of card
@@ -42,6 +43,7 @@ function Card(props) {
           <p>{item}</p>
         ))}
       </div>
+      <img src={trash} alt="delete item" />
     </div>
   );
 }

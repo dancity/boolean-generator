@@ -10,7 +10,14 @@ import Card from "./components/Card";
 import { useState } from "react";
 
 function App() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState([
+    {
+      id: 0,
+      type: "required",
+      keywords: [],
+      deleted: false,
+    },
+  ]);
 
   function addCard(type) {
     setCards([
@@ -69,17 +76,11 @@ function App() {
       externalOutput =
         externalOutput + ` ${id === 0 ? "" : operator} (${internalOutputMemo})`;
     });
-
-    /*let insideKeywords = cards.map((item) => {
-      return `(${item.keywords.map((iitem, iindex) => {
-        return `OR "${iitem.toLowerCase()}"`;
-      })}) AND`;
-    }); */
     setOutput(externalOutput);
   }
 
   return (
-    <div>
+    <div className="main">
       <div className="Input">
         <Required addCard={() => addCard("required")} />
         <Optional addCard={() => addCard("optional")} />
