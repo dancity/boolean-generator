@@ -45,6 +45,21 @@ function App() {
     );
   }
 
+  function deleteCard(cardId) {
+    setCards(
+      cards.map((item) => {
+        if (item.id === cardId) {
+          return {
+            ...item,
+            deleted: true,
+          };
+        }
+        return item;
+      })
+    );
+  }
+
+  //OUTPUT GERADOR DOS BOOLEANS
   const [output, setOutput] = useState("");
   function generateBoolean() {
     let internalOutput = "";
@@ -52,29 +67,32 @@ function App() {
     let externalOutput = "";
     let operator = "";
     cards.forEach((card, id) => {
-      card.keywords.forEach((keyword, subId) => {
-        internalOutput =
-          internalOutput +
-          `${subId === 0 ? "" : "OR"} "${keyword.toLowerCase()}" `;
-        internalOutputMemo = internalOutput;
-      });
-      //Seleciona o operador correto
-      switch (card.type) {
-        case "required":
-          operator = "AND";
-          break;
-        case "optional":
-          operator = "OR";
-          break;
-        case "exclude":
-          operator = "NOT";
-          break;
-        default:
-          operator = "";
+      if (card.deleted === false) {
+        card.keywords.forEach((keyword, subId) => {
+          internalOutput =
+            internalOutput +
+            `${subId === 0 ? "" : "OR"} "${keyword.toLowerCase()}" `;
+          internalOutputMemo = internalOutput;
+        });
+        //Seleciona o operador correto
+        switch (card.type) {
+          case "required":
+            operator = "AND";
+            break;
+          case "optional":
+            operator = "OR";
+            break;
+          case "exclude":
+            operator = "NOT";
+            break;
+          default:
+            operator = "";
+        }
+        internalOutput = "";
+        externalOutput =
+          externalOutput +
+          ` ${id === 0 ? "" : operator} (${internalOutputMemo})`;
       }
-      internalOutput = "";
-      externalOutput =
-        externalOutput + ` ${id === 0 ? "" : operator} (${internalOutputMemo})`;
     });
     setOutput(externalOutput);
   }
@@ -88,7 +106,12 @@ function App() {
       </div>
       <div className="cardbox">
         {cards.map((item) => (
-          <Card key={item.id} card={item} addKeyword={addKeyword} />
+          <Card
+            key={item.id}
+            card={item}
+            addKeyword={addKeyword}
+            deleteCard={deleteCard}
+          />
         ))}
       </div>
       <div className="Output">

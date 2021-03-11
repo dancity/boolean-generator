@@ -27,25 +27,33 @@ function Card(props) {
     event.target[0].value = "";
   }
 
-  return (
-    <div className="Card" style={{ borderColor: color }}>
-      <form onSubmit={submit}>
-        <input
-          type="text"
-          id="keywords"
-          name="keywords"
-          placeholder="Add synonym"
-          autoComplete="off"
+  if (props.card.deleted === true) {
+    return null;
+  } else {
+    return (
+      <div className="Card" style={{ borderColor: color }}>
+        <form onSubmit={submit}>
+          <input
+            type="text"
+            id="keywords"
+            name="keywords"
+            placeholder="Add synonym"
+            autoComplete="off"
+          />
+        </form>
+        <div className="keywords">
+          {props.card.keywords.map((item) => (
+            <p>{item}</p>
+          ))}
+        </div>
+        <img
+          src={trash}
+          alt="delete item"
+          onClick={() => props.deleteCard(props.card.id)}
         />
-      </form>
-      <div className="keywords">
-        {props.card.keywords.map((item) => (
-          <p>{item}</p>
-        ))}
       </div>
-      <img src={trash} alt="delete item" />
-    </div>
-  );
+    );
+  }
 }
 
 export default Card;
